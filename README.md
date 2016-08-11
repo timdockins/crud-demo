@@ -17,3 +17,6 @@ A demo of a CRUD screen for a simple business object
 2. DataTables - The powerhouse of the page.  Provides a rich table experience (i.e. sorting, searching, pagination) with an accessible API.
 3. Knockout - Handles data-binding between the HTML and the JS
 4. Font-Awesome - Superior icon set
+
+## Codebase
+You can see my GitHub repository for this project at: http://gibhub.com/timdockins/crud-demo
