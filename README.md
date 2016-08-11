@@ -11,9 +11,9 @@ A demo of a CRUD screen for a simple business object
 2. Bower - Bower to install client-side components
 3.  Yeoman - and the h5bp generator
 
-### Client-side compnents
+### Client-side components
 1. Bootstrap - Twitter's Bootstrap for styling and simple page elements (e.g. Modal)
 2. Yeti Bootstrap theme - Good and clean starting place for an overall page feel.
-2. Datatables - The powerhouse of the page.  Provides a rich table experience (i.e. sorting, searching, pagination) with an accessible API.
+2. DataTables - The powerhouse of the page.  Provides a rich table experience (i.e. sorting, searching, pagination) with an accessible API.
 3. Knockout - Handles data-binding between the HTML and the JS
 4. Font-Awesome - Superior font-set
