@@ -21,9 +21,8 @@ module.exports = function ( grunt ) {
                                           cwd : "src",
                                           src : [
                                               '**/*.html',
-                                              '**/*.pdf',
                                               'components/**/*',
-                                              'js/**',
+                                              'js/**/*.js',
                                               'css/*.css',
                                               'img/*.{png,jpg}'
                                           ],
