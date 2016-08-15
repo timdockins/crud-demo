@@ -3,6 +3,7 @@ A demo of a CRUD screen for a simple business object
 
 ## History
 
+2016-08-14 : While all 'in-browser', CRUD functions complete.  No delete confirmation, yet.  Refreshing the page will lose the data.
 2016-08-11 : Initial cut showing the READ aspect of a CRUD.  Data is randomly generated from Mockaroo.  Initial modal for new element implemented.  No other functionality at this point.
 
 ## Technology
