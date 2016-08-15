@@ -94,7 +94,7 @@ table.dataTable tbody > tr > .selected {
     font-weight: bold;
 }
 
-.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
     background-color: #2780e3;
     color: #FFFFFF;
 }
@@ -105,6 +105,16 @@ div.dataTables_wrapper div.dataTables_filter label {
 
 table {
     font-size: 1em;
+}
+
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btn-group > .btn:last-child:not(:first-child):not(.dropdown-toggle) {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 /* ==========================================================================
