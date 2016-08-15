@@ -113,9 +113,9 @@ module.exports = function ( grunt ) {
     grunt.loadNpmTasks( 'grunt-contrib-connect' );
     grunt.loadNpmTasks( 'grunt-autoprefixer' );
 
-    grunt.registerTask( 'deploy' , [ 'pug', 'less:production', 'autoprefixer', 'clean:dist', 'copy:dist', 'ftp-deploy:dist' ]);
-    grunt.registerTask( 'deploy-full' , [ 'pug', 'less:production', 'autoprefixer', 'clean:dist', 'copy:dist', 'ftp-deploy:full' ]);
+    grunt.registerTask( 'deploy' , [ 'less', 'autoprefixer', 'clean:dist', 'copy:dist', 'ftp-deploy:dist' ]);
+    grunt.registerTask( 'deploy-full' , [ 'less', 'autoprefixer', 'clean:dist', 'copy:dist', 'ftp-deploy:full' ]);
     grunt.registerTask( 'dev', ['less', 'browserSync'])
 
 
-}
+};
