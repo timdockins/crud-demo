@@ -685,8 +685,6 @@ $( document ).ready( function () {
                 tags        : self.currentTopic.tags(),
                 type        : self.currentTopic.type()
             };
-            window.console && console.log( "save topic fired", adder );
-
             var rowNode = dataTable.row.add( adder ).draw().node();
 
         };
@@ -715,7 +713,18 @@ $( document ).ready( function () {
         dataTable.on( "deselect", function () {
             self.editEnabled( false );
             self.removeEnabled( false );
-        } )
+        } );
+
+        dataTable.on("dblclick", function () {
+            var rowData = dataTable.row( ".selected" ).data();
+            self.currentTopic.name(rowData.name);
+            self.currentTopic.description(rowData.description);
+            self.currentTopic.tags(rowData.tags);
+            self.currentTopic.type(rowData.type);
+            self.editing(true);
+            $("#rowModal").modal();
+
+        })
 
     };
 
