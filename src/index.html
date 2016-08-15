@@ -31,13 +31,20 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-menubuilder">
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a href="#">Topics</a>
+                        <li class="active"><a href="#">Topics</a>
                         </li>
                         <li><a href="#">Tags</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="alert-success"><a href="#" data-toggle="modal" data-target="#rowModal"><i class="fa fa-fw fa-lg fa-plus"></i> new topic</a></li>
+                        <li class="alert-default" data-bind="css : { 'alert-success' : newEnabled() }">
+                            <a href="#" data-toggle="modal" data-target="#rowModal"><i class="fa fa-fw fa-lg fa-plus"></i> new</a></li>
+                        <li class="alert-default" data-bind="css : { 'alert-info' : editEnabled() }">
+                            <a href="#" data-bind="click: editTopic"><i class="fa fa-fw fa-lg fa-pencil"></i> edit</a>
+                        </li>
+                        <li class="alert-default" data-bind="css : { 'alert-danger' : removeEnabled() }">
+                            <a href="#" data-bind="click: removeTopic"><i class="fa fa-fw fa-lg fa-remove"></i> remove</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -60,20 +67,20 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="topic">Topic Name</label>
-                                <input type="text" id="topic" name="topic" class="form-control" placeholder="new topic name">
+                                <label for="topic">Name</label>
+                                <input type="text" id="topic" name="topic" class="form-control" placeholder="name" data-bind="value: currentTopic.name">
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <input type="text" id="description" name="description" class="form-control" placeholder="new description">
+                                <input type="text" id="description" name="description" class="form-control" placeholder="description"  data-bind="value: currentTopic.description">
                             </div>
                             <div class="form-group">
                                 <label for="tags">Tags</label>
-                                <input type="text" id="tags" name="tags" class="form-control" placeholder="new tags">
+                                <input type="text" id="tags" name="tags" class="form-control" placeholder="tags"  data-bind="value: currentTopic.tags">
                             </div>
                             <div class="form-group">
                                 <label for="type">Type</label>
-                                <select class="form-control" id="type">
+                                <select class="form-control" id="type" data-bind="value: currentTopic.type">
                                     <option>Brand</option>
                                     <option>Interest</option>
                                     <option>Custom</option>
@@ -85,7 +92,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Save changes</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" data-bind="click: addTopic, enable : saveEnabled">Add Topic</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

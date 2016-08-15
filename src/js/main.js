@@ -1,4 +1,5 @@
 $( document ).ready( function () {
+
     var values = [
         {
             "id"          : 1,
@@ -60,7 +61,7 @@ $( document ).ready( function () {
             "description" : "Etiam vel augue.",
             "tags"        : "a",
             "type"        : "Custom"
-        }, {
+        } /*,{
             "id"          : 11,
             "topic"       : "Plambee",
             "description" : "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
@@ -600,32 +601,110 @@ $( document ).ready( function () {
             "description" : "Aenean lectus.",
             "tags"        : "pede justo",
             "type"        : "Custom"
-        }
+        }*/
     ];
-    var table  = $( '#dt' ).DataTable( {
-                                           data         : values,
-                                           searching    : true,
-                                           lengthChange : false,
-                                           select       : true,
-                                           columns      : [
-                                               {
-                                                   title : "Topic",
-                                                   data  : "topic"
-                                               },
-                                               {
-                                                   title : "Description",
-                                                   data  : "description"
-                                               },
-                                               {
-                                                   title : "Tags",
-                                                   data  : "tags"
-                                               },
-                                               {
-                                                   title : "Type",
-                                                   data  : "type"
-                                               }
+    var table  = $( '#dt' ).DataTable(
+        {
+            data         : values,
+            searching    : true,
+            lengthChange : false,
+            select       : "single",
+            columns      : [
+                {
+                    title : "Topic",
+                    data  : "topic"
+                },
+                {
+                    title : "Description",
+                    data  : "description"
+                },
+                {
+                    title : "Tags",
+                    data  : "tags"
+                },
+                {
+                    title : "Type",
+                    data  : "type"
+                }
 
-                                           ]
-                                       } );
+            ]
+        } );
+
+
+    function ViewModel( dataTable ) {
+        var self = this;
+
+        self.currentTopic = {
+            name        : ko.observable(),
+            description : ko.observable(),
+            tags        : ko.observable(),
+            type        : ko.observable()
+        };
+
+        self.newEnabled  = ko.observable( true );
+        self.newTopic = function () {
+            self.currentTopic.name(null);
+            self.currentTopic.description(null);
+            self.currentTopic.tags(null);
+            self.currentTopic.type(null);
+        };
+
+        self.editEnabled = ko.observable( false );
+
+        self.editTopic = function () {
+            window.console && console.log( "editTopic() fired." );
+        };
+
+        self.removeEnabled = ko.observable( false );
+
+        /*self.currentTopic = {
+         name        : ko.observable(),
+         description : ko.observable(),
+         tags        : ko.observableArray(),
+         type        : ko.observable()
+         };*/
+
+
+
+        self.saveEnabled = ko.computed(
+            function () {
+                return (self.currentTopic.name() != null);
+            }
+        );
+
+        self.addTopic = function () {
+            var adder   = {
+                topic       : self.currentTopic.name(),
+                description : self.currentTopic.description(),
+                tags        : self.currentTopic.tags(),
+                type        : self.currentTopic.type
+            };
+            window.console && console.log( "save topic fired", adder );
+
+            var rowNode = dataTable.row.add( adder ).draw().node();
+            
+        };
+
+        self.removeTopic = function () {
+            dataTable.row( ".selected" ).remove().draw( false );
+            self.editEnabled( false );
+            self.removeEnabled( false );
+        };
+
+        dataTable.on( "select", function ( e, dt, type, indexes ) {
+            self.editEnabled( true );
+            self.removeEnabled( true );
+        } );
+
+        dataTable.on( "deselect", function () {
+            self.editEnabled( false );
+            self.removeEnabled( false );
+        } )
+
+    };
+
+    var viewModel = new ViewModel( table );
+
+    ko.applyBindings( viewModel );
 
 } );
