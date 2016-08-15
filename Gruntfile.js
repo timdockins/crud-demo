@@ -25,7 +25,7 @@ module.exports = function ( grunt ) {
                                               'components/**/*',
                                               'js/**',
                                               'css/*.css',
-                                              'img/*.{png,jpg}',
+                                              'img/*.{png,jpg}'
                                           ],
                                           dest : 'dist/'
                                       }
