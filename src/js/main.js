@@ -620,7 +620,8 @@ $( document ).ready( function () {
                 },
                 {
                     title : "Tags",
-                    data  : "tags"
+                    data  : "tags",
+                    width : "350px"
                 },
                 {
                     title : "Type",
@@ -668,7 +669,12 @@ $( document ).ready( function () {
 
         self.saveEnabled = ko.computed(
             function () {
-                return (self.currentTopic.name() != null);
+                return (
+                self.currentTopic.name() != null &&
+                self.currentTopic.description() != null &&
+                self.currentTopic.tags() != null &&
+                self.currentTopic.type() != null
+                );
             }
         );
 
@@ -682,7 +688,7 @@ $( document ).ready( function () {
             window.console && console.log( "save topic fired", adder );
 
             var rowNode = dataTable.row.add( adder ).draw().node();
-            
+
         };
 
         self.removeTopic = function () {
