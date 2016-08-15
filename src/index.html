@@ -41,7 +41,7 @@
                             <button class="btn btn-primary" data-bind="enabled : newEnabled(), css : { disabled : !newEnabled() }, click: newTopic" data-toggle="modal" data-target="#rowModal">
                                 <i class="fa fa-fw fa-lg fa-plus"></i> new
                             </button>
-                            <button class="btn btn-primary" data-bind="enabled : editEnabled(), css : { disabled : !editEnabled() }, click: editTopic">
+                            <button class="btn btn-primary" data-bind="enabled : editEnabled(), css : { disabled : !editEnabled() }, click: editTopic" data-toggle="modal" data-target="#rowModal">
                                 <i class="fa fa-fw fa-lg fa-pencil"></i> edit
                             </button>
                             <button class="btn btn-primary" data-bind="enabled : removeEnabled, css : { disabled : !removeEnabled() }, click: removeTopic">
@@ -70,8 +70,8 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="topic">Name</label>
-                                <input type="text" id="topic" name="topic" class="form-control" placeholder="name" data-bind="value: currentTopic.name">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="name" data-bind="value: currentTopic.name">
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
@@ -94,8 +94,13 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click: addTopic, enable : saveEnabled">Add Topic</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-ban"></i> Close</button>
+                        <!-- ko ifnot: editing -->
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="ifnot: !editing, click: addTopic, enable : saveEnabled"><i class="fa fa-fw fa-lg fa-plus"></i> Add</button>
+                        <!-- /ko -->
+                        <!-- ko if: editing -->
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click: saveTopic, enable : saveEnabled"><i class="fa fa-fw fa-lg fa-save"></i> Save</button>
+                        <!-- /ko -->
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
